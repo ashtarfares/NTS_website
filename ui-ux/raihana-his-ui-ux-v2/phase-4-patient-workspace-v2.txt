@@ -1,0 +1,167 @@
+# RAIHANA HIS UI/UX V2
+
+This prompt is part of a phased frontend redesign for an Enterprise Hospital Information System (HIS) built on Frappe.
+
+## Global non-negotiable rules
+
+- Frontend only unless explicitly approved.
+- Do not alter DocTypes, database structure, permissions, APIs, backend workflows, naming series, routing logic, or ERP business logic.
+- Preserve Frappe authentication, sessions, role permissions, routes, forms, list views, reports, notifications, and existing data behavior.
+- When a requested UX improvement requires backend work, document it under `Backend dependency — not implemented`.
+- Do not replace working Frappe behavior with mock data.
+- Build reusable components instead of page-specific visual hacks.
+- Clinical safety, speed, clarity, accessibility, and data integrity override visual effects.
+- No visual effect may hide, delay, obscure, reorder, or reduce the readability of clinical information.
+- Support Arabic RTL and English LTR from the beginning.
+- Meet WCAG 2.2 AA at minimum.
+- Respect `prefers-reduced-motion`.
+- Keep dense clinical surfaces fast and calm.
+- Take screenshots and provide a changed-files report at the end of each phase.
+- Stop after the requested phase and wait for explicit approval.
+
+## Required research approach
+
+Before implementation, inspect the existing codebase and identify:
+- Frappe version and frontend architecture.
+- Whether the current surface uses Frappe Desk, Frappe UI, Vue, React, Jinja, or custom pages.
+- Existing assets, theme files, hooks, build pipeline, and component conventions.
+- Existing routes and role-based navigation.
+- Current UI defects and inconsistencies.
+
+When internet access is available, research current open-source interaction and component patterns from:
+- Motiq
+- 21st.dev
+- Aceternity UI
+- Magic UI
+- Origin UI
+- React Bits
+- Motion Primitives
+- Animata
+- Cult UI
+- Uiverse
+- shadcn/ui
+- Radix UI
+- HeroUI
+- GitHub open-source projects
+
+Also study product patterns from Linear, Raycast, Stripe, Vercel, Notion, GitHub, Slack, and modern healthcare systems.
+
+Do not copy an entire product or paid component. Use only legally reusable open-source code with a compatible license, record the source and license, and adapt it into one original Raihana design language.
+
+# PHASE 4 — WORLD-CLASS PATIENT WORKSPACE
+
+## Context
+
+Continue from approved Phases 1–3. Reuse all established components.
+
+## Objective
+
+Build a patient workspace—not a generic profile page—that lets clinical staff understand identity, risks, current state, and history quickly.
+
+## Information hierarchy
+
+1. Patient identity.
+2. Critical alerts and allergies.
+3. Active encounter/admission state.
+4. Current orders, medications, and vitals.
+5. Recent results and timeline.
+6. Long-term history.
+7. Administrative and billing details according to role.
+
+## Scope
+
+### 1. Sticky patient identity rail/header
+
+Always-visible area with supported fields:
+- full name,
+- MRN,
+- age/date of birth,
+- sex,
+- photo/initials,
+- contact,
+- current location/department/bed when applicable,
+- active encounter,
+- allergies,
+- safety alerts,
+- key identifiers.
+
+Critical alerts must never be hidden behind a tab, collapsed panel, hover-only state, or animation.
+
+### 2. Patient workspace layout
+
+Use a responsive workspace that may include:
+- sticky identity header,
+- primary central clinical content,
+- optional right-side quick-action/context panel,
+- resizable panels only when technically safe and accessible,
+- full RTL/LTR support.
+
+Do not create a visually complex three-column layout if the content does not justify it.
+
+### 3. Navigation
+
+Use tabs/section navigation for:
+- overview,
+- encounters/history,
+- vitals,
+- labs,
+- radiology,
+- medications,
+- orders,
+- notes/documents,
+- billing/administrative sections where permitted.
+
+Include:
+- animated active indicator ≤180ms,
+- keyboard navigation,
+- deep-linking that preserves Frappe routing where feasible,
+- clear unread/pending counts only when real.
+
+### 4. Patient content cards
+
+Use calm clinical cards by default. Rich effects are limited:
+- a subtle Border Beam or glow may be used only for a non-clinical quick-action card or onboarding hint,
+- never for allergies, vital signs, medications, active orders, lab abnormalities, or diagnoses.
+
+### 5. Quick actions
+
+Role-aware actions may include:
+- start/open encounter,
+- add note,
+- order lab,
+- order imaging,
+- prescribe medication,
+- book appointment,
+- open billing.
+
+Use explicit text, confirmation for dangerous actions, and existing Frappe permissions.
+
+### 6. Interaction
+
+- section transitions may use brief fade/slide,
+- no animation delays data,
+- sticky areas must not cover content,
+- tooltips explain unfamiliar icons,
+- progressive disclosure is allowed only for secondary data,
+- user can return to prior scroll/section state when feasible.
+
+### 7. States and safety
+
+Implement:
+- loading skeleton matching final layout,
+- empty sections,
+- missing-data state,
+- restricted-access state,
+- service error state,
+- stale result warning when supported.
+
+## Required output
+
+1. Current patient data/route audit.
+2. Information architecture explanation.
+3. Patient workspace implementation.
+4. Safety review showing alerts always visible.
+5. RTL/LTR, light/dark, responsive screenshots.
+6. Keyboard and reduced-motion evidence.
+7. Changed-files report.
+8. Stop and wait for approval.

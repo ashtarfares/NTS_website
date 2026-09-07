@@ -1,0 +1,142 @@
+# RAIHANA HIS UI/UX V2
+
+This prompt is part of a phased frontend redesign for an Enterprise Hospital Information System (HIS) built on Frappe.
+
+## Global non-negotiable rules
+
+- Frontend only unless explicitly approved.
+- Do not alter DocTypes, database structure, permissions, APIs, backend workflows, naming series, routing logic, or ERP business logic.
+- Preserve Frappe authentication, sessions, role permissions, routes, forms, list views, reports, notifications, and existing data behavior.
+- When a requested UX improvement requires backend work, document it under `Backend dependency — not implemented`.
+- Do not replace working Frappe behavior with mock data.
+- Build reusable components instead of page-specific visual hacks.
+- Clinical safety, speed, clarity, accessibility, and data integrity override visual effects.
+- No visual effect may hide, delay, obscure, reorder, or reduce the readability of clinical information.
+- Support Arabic RTL and English LTR from the beginning.
+- Meet WCAG 2.2 AA at minimum.
+- Respect `prefers-reduced-motion`.
+- Keep dense clinical surfaces fast and calm.
+- Take screenshots and provide a changed-files report at the end of each phase.
+- Stop after the requested phase and wait for explicit approval.
+
+## Required research approach
+
+Before implementation, inspect the existing codebase and identify:
+- Frappe version and frontend architecture.
+- Whether the current surface uses Frappe Desk, Frappe UI, Vue, React, Jinja, or custom pages.
+- Existing assets, theme files, hooks, build pipeline, and component conventions.
+- Existing routes and role-based navigation.
+- Current UI defects and inconsistencies.
+
+When internet access is available, research current open-source interaction and component patterns from:
+- Motiq
+- 21st.dev
+- Aceternity UI
+- Magic UI
+- Origin UI
+- React Bits
+- Motion Primitives
+- Animata
+- Cult UI
+- Uiverse
+- shadcn/ui
+- Radix UI
+- HeroUI
+- GitHub open-source projects
+
+Also study product patterns from Linear, Raycast, Stripe, Vercel, Notion, GitHub, Slack, and modern healthcare systems.
+
+Do not copy an entire product or paid component. Use only legally reusable open-source code with a compatible license, record the source and license, and adapt it into one original Raihana design language.
+
+# PHASE 5 — MEDICAL TIMELINE + INTERACTIVE APPOINTMENTS
+
+## Context
+
+Continue from approved Phases 1–4.
+
+## Objective
+
+Create a timeline and appointment experience that is visually refined, operationally fast, and clinically unambiguous.
+
+## Scope
+
+### 1. Medical timeline
+
+Display supported chronological events:
+- encounters,
+- notes,
+- laboratory events,
+- radiology events,
+- prescriptions/medication events,
+- procedures,
+- admissions/discharges,
+- documents.
+
+Requirements:
+- clear icon + label + semantic color,
+- date/time grouping,
+- filtering by type,
+- compact and expanded entries,
+- accessible details disclosure,
+- no color-only encoding,
+- virtualize or progressively load long histories,
+- initial one-time fade/slide only,
+- no persistent decorative animation.
+
+### 2. Appointment views
+
+Implement supported views:
+- day schedule,
+- week schedule,
+- doctor/resource schedule where data allows,
+- appointment cards,
+- create/edit flow using Phase 3 forms,
+- status filters.
+
+### 3. Status language
+
+Use one semantic system across appointments and timeline:
+- scheduled,
+- confirmed,
+- checked in,
+- in progress,
+- completed,
+- cancelled,
+- no-show where supported.
+
+### 4. Interaction
+
+Allowed:
+- subtle card elevation,
+- animated status change,
+- drag-and-drop rescheduling only if existing backend workflow and permissions safely support it,
+- hover/focus previews,
+- resizable schedule panels if accessible,
+- keyboard shortcuts for navigation.
+
+Disallowed:
+- visual motion that changes perceived appointment time,
+- drag/drop without confirmation and backend validation,
+- glowing every appointment,
+- hiding status text behind color.
+
+### 5. Booking flow
+
+Create a clear step flow only if needed:
+- patient,
+- service/department,
+- clinician/resource,
+- date/time,
+- confirmation.
+
+Show conflicts and validation before final save using existing APIs only.
+
+## Required output
+
+1. Event/status mapping.
+2. Timeline implementation.
+3. Appointment views and booking/edit flow.
+4. Interaction and conflict-handling evidence.
+5. RTL/LTR, responsive, keyboard, reduced-motion screenshots/tests.
+6. Changed-files report.
+7. Stop and wait for approval.
